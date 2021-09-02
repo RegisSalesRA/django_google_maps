@@ -1,0 +1,29 @@
+
+version: '3'
+
+services:
+    web:
+        build: .
+        container_name: Restaurant
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+          - .:/app
+        ports:
+          - "8000:8000"
+        depends_on: 
+          - db_postgres
+    db_postgres:
+        image: postgres
+        container_name: postgres_db
+        
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_DB: postgres
+            POSTGRES_PASSWORD: postgres
+        ports:
+          - "5436:5432"            
+        volumes:
+            - db_data:/var/lib/postgresql/data/
+
+volumes:
+    db_data:
