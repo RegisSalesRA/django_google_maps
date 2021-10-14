@@ -1,29 +1,28 @@
 from django.core.management.base import BaseCommand, CommandError
 from core.models import Customers
-from decouple import config
 import csv
 
 class Command(BaseCommand):
     help = "Load customers data into database from CSV file."
 
     def add_arguments(self, parser):
-        parser.add_argument("csv_customer_path", type=str)
+        parser.add_argument("csv_file_path", type=str)
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **kwargs):
         try:
-            csv_customers = csv.DictReader(options["csv_customer_path"],)
-            for csv_customer in csv_customers:
-                customerlist = Customers.objects.create(**{
-                    "first_name": csv_customer["first_name"],
-                    "last_name":csv_customer["last_name"],
-                    "email":csv_customer["email"],
-                    "gender":csv_customer["gender"],
-                    "company":csv_customer["company"],
-                    "city":csv_customer["city"],
-                    "title":csv_customer["title"]
-                })
-                customerlist.save()
-                
+            path = kwargs['csv_file_path']
+            with open(path, 'rt') as customer_csv:
+                reader = csv.reader(customer_csv)
+                for row in reader:
+                    Customers.objects.create(**{
+                    "first_name": row["first_name"],
+                    "last_name":row["last_name"],
+                    "email":row["email"],
+                    "gender":row["gender"],
+                    "company":row["company"],
+                    "city":row["city"],
+                    "title":row["title"]
+                })             
 
         except Exception as error:
             print(f"Erro ao criar {error}")
