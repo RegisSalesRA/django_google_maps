@@ -13,9 +13,9 @@ class Customers(models.Model):
     def __str__(self):
         return self.first_name
 
-class Boleto(models.Model):
-    nome = models.CharField(max_length=100)
-    due_date = models.DateField()      
+    def __repr__(self):
+        return self.first_name
 
-    def __str__(self):
-        return self.nome
+    class Meta:
+        verbose_name = 'Customer'
+        verbose_name_plural = "Customers"    
