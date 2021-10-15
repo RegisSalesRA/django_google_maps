@@ -19,3 +19,6 @@ class Customers(models.Model):
     class Meta:
         verbose_name = 'Customer'
         verbose_name_plural = "Customers"    
+
+class Teste(models.Model):
+    name = models.CharField(max_length=12)        

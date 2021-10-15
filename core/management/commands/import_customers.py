@@ -10,20 +10,24 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         try:
+            
             path = kwargs['csv_file_path']
-            with open(path, 'rt') as customer_csv:
+            with open(path, 'r') as customer_csv:
                 reader = csv.reader(customer_csv)
+                lista_customers = []
                 for row in reader:
-                    Customers.objects.create(**{
-                    "first_name": row["first_name"],
-                    "last_name":row["last_name"],
-                    "email":row["email"],
-                    "gender":row["gender"],
-                    "company":row["company"],
-                    "city":row["city"],
-                    "title":row["title"]
-                })             
-
+                    customer = Customers(
+                    first_name = row[1],
+                    last_name=row[2],
+                    email=row[3],
+                    gender=row[4],
+                    company=row[5],
+                    city=row[6],
+                    title=row[7]
+                )
+                    lista_customers.append(customer)
+                Customers.objects.bulk_create(lista_customers)    
+            
         except Exception as error:
             print(f"Erro ao criar {error}")
         else:
