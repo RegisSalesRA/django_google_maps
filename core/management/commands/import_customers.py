@@ -16,19 +16,19 @@ class Command(BaseCommand):
                 reader = csv.reader(customer_csv)
                 lista_customers = []
                 for row in reader:
-                    customer = Customers(
-                    first_name = row[1],
-                    last_name=row[2],
-                    email=row[3],
-                    gender=row[4],
-                    company=row[5],
-                    city=row[6],
-                    title=row[7]
-                )
+                    customer = Customers(**{
+                    "first_name": row[1],
+                    "last_name":row[2],
+                    "email":row[3],
+                    "gender":row[4],
+                    "company":row[5],
+                    "city":row[6],
+                    "title":row[7]
+                })
                     lista_customers.append(customer)
                 Customers.objects.bulk_create(lista_customers)    
             
         except Exception as error:
-            print(f"Erro ao criar {error}")
+            print(error)
         else:
             self.stdout.write("Csv has been imported successfully.")
