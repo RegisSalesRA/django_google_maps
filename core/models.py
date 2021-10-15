@@ -2,13 +2,24 @@ from django.db import models
 
 # Create your models here.
 class Customers(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    gender = models.CharField(max_length=100)
+
+    female = "Female"
+    male = "Male"
+
+    gender_choice = [
+        (female, 'Female'),
+        (male, 'Male'),
+    ]
+
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    email = models.EmailField(max_length=100, unique=True)
+    gender = models.CharField(max_length=25,choices=gender_choice)
     company = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     title=  models.CharField(max_length=100)
+    latitude = models.FloatField(blank=True,null=True)
+    longitude = models.FloatField(blank=True,null=True)
 
     def __str__(self):
         return self.first_name
@@ -18,7 +29,4 @@ class Customers(models.Model):
 
     class Meta:
         verbose_name = 'Customer'
-        verbose_name_plural = "Customers"    
-
-class Teste(models.Model):
-    name = models.CharField(max_length=12)        
+        verbose_name_plural = "Customers"
