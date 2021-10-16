@@ -1,4 +1,6 @@
 from django.db import models
+import requests
+
 
 # Create your models here.
 class Customers(models.Model):
@@ -18,8 +20,9 @@ class Customers(models.Model):
     company = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     title=  models.CharField(max_length=100)
-    latitude = models.FloatField(blank=True,null=True)
-    longitude = models.FloatField(blank=True,null=True)
+    latitude = models.FloatField(max_length=100,blank=True,null=True)
+    longitude = models.FloatField(max_length=100,blank=True,null=True)
+
 
     def __str__(self):
         return self.first_name
