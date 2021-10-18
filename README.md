@@ -4,4 +4,4 @@
 
 # Csv import command
 
-python3 manage.py import_customers customers.csv 
+python3 manage.py import_Customer Customer.csv 

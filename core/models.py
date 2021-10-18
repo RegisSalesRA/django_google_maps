@@ -3,7 +3,7 @@ import requests
 
 
 # Create your models here.
-class Customers(models.Model):
+class Customer(models.Model):
 
     female = "Female"
     male = "Male"
@@ -32,4 +32,4 @@ class Customers(models.Model):
 
     class Meta:
         verbose_name = 'Customer'
-        verbose_name_plural = "Customers"
+        verbose_name_plural = "Customer"

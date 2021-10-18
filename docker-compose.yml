@@ -4,7 +4,7 @@ version: '3'
 services:
     web:
         build: .
-        container_name: Restaurant
+        container_name: Django_csv_googleMaps
         command: python manage.py runserver 0.0.0.0:8000
         volumes:
           - .:/app
@@ -14,7 +14,7 @@ services:
           - db_postgres
     db_postgres:
         image: postgres
-        container_name: postgres_db
+        container_name: postgres_django_csv_googleMaps
         
         environment:
             POSTGRES_USER: postgres

@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
-from core.models import Customers
+from core.models import Customer
 import csv
 import requests
 class Command(BaseCommand):
-    help = "Load customers data into database from CSV file."
+    help = "Load Customer data into database from CSV file."
 
     def add_arguments(self, parser):
         parser.add_argument("csv_file_path", type=str)
@@ -14,12 +14,12 @@ class Command(BaseCommand):
             with open(path, 'r') as customer_csv:
                 reader = csv.reader(customer_csv)
                 next(reader, None) 
-                lista_customers = []
+                lista_Customer = []
                 for row in reader:
                     response = requests.get(f'https://maps.googleapis.com/maps/api/geocode/json?address={row[6]}&key=<KeyGoogleApi>')
                     resp_json_payload = response.json()
 
-                    customer = Customers(**{
+                    customer = Customer(**{
                     "first_name": row[1],
                     "last_name":row[2],
                     "email":row[3],
@@ -34,8 +34,8 @@ class Command(BaseCommand):
                         customer.longitude = resp_json_payload['results'][0]['geometry']['location']['lng']
                                                
                 
-                    lista_customers.append(customer)
-                Customers.objects.bulk_create(lista_customers)    
+                    lista_Customer.append(customer)
+                Customer.objects.bulk_create(lista_Customer)    
             
         except Exception as error:
             print(error)

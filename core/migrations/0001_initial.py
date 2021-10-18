@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Customers',
+            name='Customer',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=100)),
@@ -25,14 +25,8 @@ class Migration(migrations.Migration):
             ],
             options={
                 'verbose_name': 'Customer',
-                'verbose_name_plural': 'Customers',
+                'verbose_name_plural': 'Customer',
             },
         ),
-        migrations.CreateModel(
-            name='Teste',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=12)),
-            ],
-        ),
+   
     ]
