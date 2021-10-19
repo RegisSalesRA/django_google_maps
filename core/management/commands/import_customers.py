@@ -30,9 +30,10 @@ class Command(BaseCommand):
                     })
                 
                     if resp_json_payload['status'] == 'OK':
-                        customer.latitude = resp_json_payload['results'][0]['geometry']['location']['lat']
-                        customer.longitude = resp_json_payload['results'][0]['geometry']['location']['lng']
-                                               
+                          customer.latitude = resp_json_payload['results'][0]['geometry']['location']['lat']
+                          customer.longitude = resp_json_payload['results'][0]['geometry']['location']['lng']
+                    else:
+                        return None                           
                 
                     lista_Customer.append(customer)
                 Customer.objects.bulk_create(lista_Customer)    
