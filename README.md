@@ -19,7 +19,20 @@ source venv/bin/activate
 python3 manage.py makemigrations
 python3 manage.py migrate
 ```
+## API KEY
+```py
+Before run command csv you make shure do you have a google api from 
 
+console.cloud.google.com
+look for geocoding api in library google dev
+
+and replace here
+```
+<img src="/images/api_key.png">
+
+```py
+replace <KeyGoogleApi> for your apikey get from google and now you can run this command bellow
+```
 ## Csv import command
 ```py
 python manage.py import_customers customers.csv
@@ -39,6 +52,7 @@ use this command python3 manage.py runserver
 ## You can acesse customer api with swagger with this link
 ```py
 http://127.0.0.1:8000/api/v1/swagger_v1
-<img src="/readme/home.png" >
+ 
 ```
+<img src="/images/swagger.png">
 
