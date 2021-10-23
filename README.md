@@ -2,6 +2,12 @@
 ```
 A simple project with manager customers location using api from google maps to get latitude and longitude
 ```
+
+## Test Endpoints
+```
+python manage.py test
+```
+
 ## git clone
 ```py
 git clone git@github.com:RegisSalesRA/Django_Csv_GoogleMaps.git
